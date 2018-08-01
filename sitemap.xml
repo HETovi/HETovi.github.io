@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/404.html</loc>
+    
+    <lastmod>2018-08-01T03:47:24.299Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2018/07/31/Makefile%E5%AD%A6%E4%B9%A0/</loc>
     
     <lastmod>2018-08-01T02:47:14.534Z</lastmod>
