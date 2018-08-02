@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="数据库,SQL," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Tovi的博客" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="事务事务是数据库系统中的一个工作单位，它是由用户定义的一组操作序列。一个事务可以一组sql语句、一条sql语句或整个程序，一个应用程序可以包括多个事务。事务的开始和结束可以由用户显示控制。如果用户没有显示的定义，则由数据库缺省自动划分。">
+<meta name="keywords" content="数据库,SQL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据库学习">
+<meta property="og:url" content="http://yoursite.com/2018/08/02/数据库学习/index.html">
+<meta property="og:site_name" content="Tovi的博客">
+<meta property="og:description" content="事务事务是数据库系统中的一个工作单位，它是由用户定义的一组操作序列。一个事务可以一组sql语句、一条sql语句或整个程序，一个应用程序可以包括多个事务。事务的开始和结束可以由用户显示控制。如果用户没有显示的定义，则由数据库缺省自动划分。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-08-02T03:31:12.358Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据库学习">
+<meta name="twitter:description" content="事务事务是数据库系统中的一个工作单位，它是由用户定义的一组操作序列。一个事务可以一组sql语句、一条sql语句或整个程序，一个应用程序可以包括多个事务。事务的开始和结束可以由用户显示控制。如果用户没有显示的定义，则由数据库缺省自动划分。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/08/02/数据库学习/"/>
+
+
+
+
+
+  <title>数据库学习 | Tovi的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+	
+	<a href="https://github.com/HETovi">
+	<img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png" alt="Fork me on GitHub">
+	</a>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Tovi的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />
+            
+            日程表
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            站点地图
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/02/数据库学习/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tovi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/IMG_0885.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Tovi的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">数据库学习</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-02T10:40:00+08:00">
+                2018-08-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3,126
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  13
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h2><p>事务是数据库系统中的一个工作单位，它是由用户定义的一组操作序列。一个事务可以一组sql语句、一条sql语句或整个程序，一个应用程序可以包括多个事务。<br>事务的开始和结束可以由用户显示控制。如果用户没有显示的定义，则由数据库缺省自动划分。<br><a id="more"></a><br>事务的定义：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">BEGIN</span> <span class="keyword">TRANSACTION</span></span><br><span class="line"><span class="keyword">COMMIT</span></span><br><span class="line"><span class="keyword">ROLLBACK</span></span><br></pre></td></tr></table></figure></p>
+<p>事务的特性：（ACID）<br>Atomicity 原子性：要么不做，要么全做。<br>Consistency 一致性：从一个一致状态到另一个一致状态。<br>Isolation 隔离性：一个事务不能被其他事务干扰，并发控制就是为了保证事务的隔离性。<br>Durability 持久性：事务一旦提交，它对数据库中数据的改变是持久的。</p>
+<h2 id="语句"><a href="#语句" class="headerlink" title="语句"></a>语句</h2><h3 id="建表语句"><a href="#建表语句" class="headerlink" title="建表语句"></a>建表语句</h3><p>Oracle建表</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> table1 (</span><br><span class="line">    <span class="keyword">id</span>     <span class="built_in">integer</span>   <span class="keyword">not</span> <span class="literal">null</span>,</span><br><span class="line">    qssi   varchar2(<span class="number">20</span>),</span><br><span class="line">    <span class="keyword">constraint</span> table1 primary <span class="keyword">key</span> (<span class="keyword">id</span>)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>DB2建表</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> table2(</span><br><span class="line">    <span class="keyword">id</span>     <span class="built_in">integer</span>   <span class="keyword">not</span> <span class="literal">null</span>,</span><br><span class="line">    qssi   <span class="built_in">varchar</span>(<span class="number">20</span>),</span><br><span class="line">    <span class="keyword">constraint</span> table2 primary <span class="keyword">key</span> (<span class="keyword">id</span>)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>informix建表</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> table3(</span><br><span class="line">    <span class="keyword">id</span>     <span class="built_in">integer</span>   <span class="keyword">not</span> <span class="literal">null</span>,</span><br><span class="line">    qssi   <span class="built_in">varchar</span>(<span class="number">20</span>),</span><br><span class="line">    primary <span class="keyword">key</span>(<span class="keyword">id</span>) <span class="keyword">constraint</span> table3</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<h3 id="视图语句"><a href="#视图语句" class="headerlink" title="视图语句"></a>视图语句</h3><p>创建视图：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">view</span> t <span class="keyword">as</span> <span class="keyword">select</span> * <span class="keyword">from</span> b;</span><br></pre></td></tr></table></figure></p>
+<p>删除视图：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">view</span> t;</span><br></pre></td></tr></table></figure></p>
+<h3 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h3><p>数据库中的索引是某个表中一列或多列值的集合和相应的指向表中物理标识这些值的数据页的逻辑指针清单。<br>创建唯一性：不允许两行具有相同的索引值（创建了唯一约束，系统将自动创建唯一索引）<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">UNIQUE</span> <span class="keyword">INDEX</span> index_name <span class="keyword">ON</span> table_name (column_name);</span><br></pre></td></tr></table></figure></p>
+<p>创建普通索引：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">index</span> index_name <span class="keyword">on</span> table_name(column_name);</span><br></pre></td></tr></table></figure></p>
+<p>删除索引：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">index</span> index_name;</span><br></pre></td></tr></table></figure></p>
+<p>主键索引：主键索引要求主键中的每个值是唯一的，（创建主键自动创建主键索引）<br>聚集索引(CLUSTERED)&lt;查询速度快&gt;：表中各行的物理顺序与键值的逻辑（索引）顺序相同，表中只能包含一个聚集索引，主键列默认为聚集索引<br>非聚集索引(NONCLUSTERED)&lt;更新速度快&gt;：表中各行的物理顺序与键值的逻辑（索引）顺序不匹配，表中可以有249个非聚集索引</p>
+<h3 id="序列"><a href="#序列" class="headerlink" title="序列"></a>序列</h3><p>序列是一数据库对象，利用它可生成唯一的整数。一般使用序列自动地生成主码值。一个序列的值是由特别的Oracle程序自动生成。</p>
+<p>创建序列<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">sequence</span> sequence_name</span><br><span class="line"><span class="keyword">minvalue</span> <span class="number">1</span> </span><br><span class="line">maxvalue <span class="number">9999999</span></span><br><span class="line"><span class="keyword">start</span> <span class="keyword">with</span> <span class="number">1</span></span><br><span class="line"><span class="keyword">increment</span> <span class="keyword">by</span> <span class="number">1</span>  </span><br><span class="line">nocache</span><br><span class="line"><span class="keyword">cycle</span> </span><br><span class="line"><span class="keyword">order</span>;</span><br><span class="line">INCREMENT BY： 指定序列号之间的间隔，该值可为正的或负的整数，但不可为0。序列为升序。忽略该子句时，缺省值为1。</span><br><span class="line"><span class="keyword">START</span> <span class="keyword">WITH</span>：指定生成的第一个序列号。在升序时，序列可从比最小值大的值开始，缺省值为序列的最小值。对于降序，序列可由比最大值小的值开始，缺省值为序列的最大值。</span><br><span class="line">MAXVALUE：指定序列可生成的最大值。</span><br><span class="line"><span class="keyword">NOMAXVALUE</span>：为升序指定最大值为<span class="number">1027</span>，为降序指定最大值为<span class="number">-1</span>。</span><br><span class="line"><span class="keyword">MINVALUE</span>：指定序列的最小值。</span><br><span class="line"><span class="keyword">NOMINVALUE</span>：为升序指定最小值为<span class="number">1</span>。为降序指定最小值为<span class="number">-1026</span>。</span><br><span class="line"><span class="keyword">CYCLE</span>: 循环使用，到达最大值或者最小值时，从新建立对象</span><br><span class="line"><span class="keyword">CACHE</span> X: 制定存入缓存（也就是内存）序列值的个数</span><br></pre></td></tr></table></figure></p>
+<p>删除序列<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">sequence</span> sequence_name;</span><br></pre></td></tr></table></figure></p>
+<p>修改序列<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">sequence</span> sequence_name <span class="keyword">cycle</span>;</span><br></pre></td></tr></table></figure></p>
+<p>查询序列<br>Oracle<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> FYCK.nextval <span class="keyword">as</span> <span class="keyword">ID</span> <span class="keyword">from</span> dual;</span><br></pre></td></tr></table></figure></p>
+<p>db2<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">nextval</span> <span class="keyword">for</span> FYCK <span class="keyword">as</span> <span class="keyword">ID</span> <span class="keyword">from</span> SYSIBM.SYSDUMMY1;</span><br></pre></td></tr></table></figure></p>
+<p>informix<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> FYCK.nextval <span class="keyword">from</span> ywty_xtywzt;</span><br></pre></td></tr></table></figure></p>
+<h3 id="基本表操作"><a href="#基本表操作" class="headerlink" title="基本表操作"></a>基本表操作</h3><p>删除表<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">table</span> table1;</span><br></pre></td></tr></table></figure></p>
+<p>插入表<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> table1(<span class="keyword">id</span>,qssi) <span class="keyword">values</span>(<span class="number">1</span>,<span class="string">'1'</span>);</span><br></pre></td></tr></table></figure></p>
+<p>删除表数据<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">delete</span> table1 <span class="keyword">where</span> <span class="keyword">id</span> = <span class="number">1</span>;</span><br></pre></td></tr></table></figure></p>
+<p>更新表<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">update</span> table1 <span class="keyword">set</span> qssi=<span class="string">'2'</span> <span class="keyword">where</span> <span class="keyword">id</span> = <span class="number">1</span>;</span><br></pre></td></tr></table></figure></p>
+<p>修改字段长度<br>Oracle<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> table1 <span class="keyword">modify</span> qssi varchar2(<span class="number">21</span>);</span><br></pre></td></tr></table></figure></p>
+<p>db2<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> table1 <span class="keyword">alter</span> qssi <span class="keyword">SET</span> <span class="keyword">DATA</span> <span class="keyword">TYPE</span> <span class="built_in">VARCHAR</span>(<span class="number">36</span>);</span><br></pre></td></tr></table></figure></p>
+<p>informix<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> table1 <span class="keyword">modify</span> qssi <span class="built_in">varchar</span>(<span class="number">22</span>);</span><br></pre></td></tr></table></figure></p>
+<p>更改字段类型<br>Oracle<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> table1 <span class="keyword">modify</span>(qssi <span class="built_in">integer</span>);</span><br></pre></td></tr></table></figure></p>
+<p>db2<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> table1 <span class="keyword">alter</span> qssi <span class="keyword">SET</span> <span class="keyword">DATA</span> <span class="keyword">TYPE</span> <span class="built_in">VARCHAR</span>(<span class="number">36</span>);只可以加宽，不能更改类型</span><br></pre></td></tr></table></figure></p>
+<p>informix<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> table1 <span class="keyword">modify</span> qssi <span class="built_in">integer</span>;</span><br></pre></td></tr></table></figure></p>
+<p>增加列<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> table1 <span class="keyword">add</span> mail <span class="built_in">varchar</span>(<span class="number">128</span>);</span><br></pre></td></tr></table></figure></p>
+<p>删除列<br>Oracle<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> table1 <span class="keyword">drop</span> <span class="keyword">column</span> mail;</span><br></pre></td></tr></table></figure></p>
+<p>db2<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">不提供删除列功能（解决办法是删除表，重建）</span><br></pre></td></tr></table></figure></p>
+<p>informix<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> table1 <span class="keyword">drop</span> mail;</span><br></pre></td></tr></table></figure></p>
+<p>更改列名<br>Oracle<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> table1 <span class="keyword">rename</span> <span class="keyword">column</span> mail <span class="keyword">to</span> mail2;</span><br></pre></td></tr></table></figure></p>
+<p>db2<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">不提供更改列名功能（解决办法同删除，或者通过建立一个新视图解决）</span><br></pre></td></tr></table></figure></p>
+<p>更改列的限制（主键、非空）<br>Oracle<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> table1 <span class="keyword">modify</span> mail2 <span class="literal">null</span>/<span class="keyword">not</span> <span class="literal">null</span>;</span><br></pre></td></tr></table></figure></p>
+<p>db2<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> table1 <span class="keyword">alter</span> <span class="keyword">column</span> qssi <span class="keyword">drop</span> <span class="keyword">not</span> <span class="literal">null</span>;</span><br></pre></td></tr></table></figure></p>
+<p>informix<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> table1 <span class="keyword">modify</span> mail2 <span class="built_in">varchar</span> <span class="literal">null</span>/noy <span class="literal">null</span>;</span><br></pre></td></tr></table></figure></p>
+<p>取前N条记录<br>Oracle<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> table1 <span class="keyword">where</span> <span class="keyword">rownum</span> &lt;=n ;</span><br></pre></td></tr></table></figure></p>
+<p>db2<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> table1 <span class="keyword">fetch</span> <span class="keyword">first</span> n <span class="keyword">rows</span> <span class="keyword">only</span>;</span><br></pre></td></tr></table></figure></p>
+<p>informix<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">first</span> n * <span class="keyword">from</span> table1;</span><br></pre></td></tr></table></figure></p>
+<p>取当前日期<br>Oracle<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">sysdate</span> <span class="keyword">from</span> dual;</span><br></pre></td></tr></table></figure></p>
+<p>db2<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">current</span> <span class="keyword">timestamp</span> <span class="keyword">from</span> sysibm.sysdummy1;</span><br></pre></td></tr></table></figure></p>
+<p>informix<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">current</span> <span class="keyword">from</span> sysmaster:sysshmvals;</span><br></pre></td></tr></table></figure></p>
+<h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><p>空值转换<br>Oracle<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> nvl(ajsm,<span class="number">0</span>) <span class="keyword">from</span> table1;</span><br></pre></td></tr></table></figure></p>
+<p>db2<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span>  <span class="keyword">value</span>(ajsm,<span class="string">''</span>)  <span class="keyword">FROM</span> gab_dxzp_xdxx;</span><br></pre></td></tr></table></figure></p>
+<p>informix<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span>  nvl(by1,<span class="number">0</span>) <span class="keyword">FROM</span> gab_dxzp_lltj;</span><br></pre></td></tr></table></figure></p>
+<p>取值判断<br>Oracle<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">case</span> jjcd <span class="keyword">when</span> <span class="string">'01'</span> <span class="keyword">then</span> <span class="string">'正常'</span> <span class="keyword">else</span> <span class="string">'加急'</span> <span class="keyword">end</span>  <span class="keyword">from</span> gab_dxzp_xdxx;</span><br></pre></td></tr></table></figure></p>
+<p>db2<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">case</span> jjcd <span class="keyword">when</span> <span class="string">'01'</span> <span class="keyword">then</span> <span class="string">'正常'</span> <span class="keyword">else</span> <span class="string">'加急'</span> <span class="keyword">end</span>  <span class="keyword">from</span> gab_dxzp_xdxx;</span><br></pre></td></tr></table></figure></p>
+<p>informix<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">case</span> ywsqbh <span class="keyword">when</span> <span class="string">'01'</span> <span class="keyword">then</span> <span class="string">'正常'</span> <span class="keyword">else</span> <span class="string">'加急'</span> <span class="keyword">end</span>  <span class="keyword">from</span> gab_dxzp_lltj;</span><br></pre></td></tr></table></figure></p>
+<h2 id="sql后台执行命令"><a href="#sql后台执行命令" class="headerlink" title="sql后台执行命令"></a>sql后台执行命令</h2><h3 id="连接数据库"><a href="#连接数据库" class="headerlink" title="连接数据库"></a>连接数据库</h3><p>Oracle<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sqlplus gapsdb/gapsdb@ora11g</span><br><span class="line">@test.sql</span><br></pre></td></tr></table></figure></p>
+<p>db2<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">db2 connect to agent21t user dba using HDb2@M01</span><br><span class="line">db2 –tvf 文件名 –z 执行日志文件</span><br></pre></td></tr></table></figure></p>
+<p>informix<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dbaccess y4tinf epcc.sql</span><br></pre></td></tr></table></figure></p>
+<h3 id="数据库启停"><a href="#数据库启停" class="headerlink" title="数据库启停"></a>数据库启停</h3><p>Oracle<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">连接：conn /as sysdba</span><br><span class="line">启动：startup</span><br><span class="line">停止：shutdown</span><br></pre></td></tr></table></figure></p>
+<p>db2<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">连接：db2 connect to test</span><br><span class="line">启动：db2start</span><br><span class="line">停止：db2stop</span><br></pre></td></tr></table></figure></p>
+<p>informix<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">启动：oninit –vy</span><br><span class="line">停止：onmode –ky</span><br></pre></td></tr></table></figure></p>
+<h2 id="sql共享原理"><a href="#sql共享原理" class="headerlink" title="sql共享原理"></a>sql共享原理</h2><p>ORACLE将执行过的SQL语句存放在内存的共享池(shared buffer pool)中，可以被所有的数据库用户共享。<br>当你执行一个SQL语句(有时被称为一个游标)时,如果它和之前的执行过的语句完全相同,ORACLE就能很快获得已经被解析的语句以及最好的执行路径. 这个功能大大地提高了SQL的执行性能并节省了内存的使用。<br>可惜的是，Oracle只对简单的表提供高速缓冲(cache bufferiIl，这个功能并不适用于多表连接查询。数据库管理员必须在启动参数文件中为这个区域设置合适的参数，当这个内存区域越大，就可以保留更多的语句，当然被共享的可能性也就越大了。当向Oracle提交一个SQL语句时，Oracle会首先在这块内存中查找相同的语句。<br>Oracle对两者采取的是一种严格匹配策略，要达成共享。SQL语句必须完全相同(包括空格、换行等)。<br>能够使用共享的语句必须满足三个条件：<br>1）字符级的比较。<br>当前被执行的语句和共享池中的语句必须完全相同。<br>例如：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> ATABLE；和下面每一个<span class="keyword">SQL</span>语句都不同：</span><br><span class="line"><span class="keyword">SELECT</span>  *<span class="keyword">from</span> ATABLE</span><br><span class="line"><span class="keyword">Select</span>  * <span class="keyword">From</span> Atable；</span><br></pre></td></tr></table></figure>
+<p>2）语句所指对象必须完全相同 即两条SQL语句操作的数据库对象必须同一。<br>3）语句中必须使用相同命名的绑定变量。如：第一组的两个SQL语句是相同的，可以共享；而第二组中两个语句不同，即使在运行时赋予不同的绑定变量以相同的值：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">第一组 <span class="keyword">select</span> pin，<span class="keyword">name</span> <span class="keyword">from</span> people <span class="keyword">where</span> pin =  ：blk1.pin；</span><br><span class="line">	   <span class="keyword">select</span> pin，<span class="keyword">name</span> <span class="keyword">from</span> people <span class="keyword">where</span> pin =：blk1.pin；</span><br><span class="line">第二组 <span class="keyword">select</span> pin，<span class="keyword">name</span> <span class="keyword">from</span> people <span class="keyword">where</span> pin =：blk1.ot_jnd；</span><br><span class="line">	   <span class="keyword">select</span> pin，<span class="keyword">name</span> <span class="keyword">from</span> people <span class="keyword">where</span> pin = ：blk1.ov_jnd；</span><br></pre></td></tr></table></figure>
+<p>当一个Oracle实例接收一条sql后的顺序</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Create</span> a <span class="keyword">Cursor</span> 创建游标</span><br><span class="line"><span class="keyword">Parse</span> the <span class="keyword">Statement</span> 分析语句</span><br><span class="line"><span class="keyword">Describe</span> Results <span class="keyword">of</span> a <span class="keyword">Query</span> 描述查询的结果集</span><br><span class="line"><span class="keyword">Define</span> <span class="keyword">Output</span> <span class="keyword">of</span> a <span class="keyword">Query</span> 定义查询的输出数据</span><br><span class="line">Bind <span class="keyword">Any</span> <span class="keyword">Variables</span> 绑定变量</span><br><span class="line">Parallelize the <span class="keyword">Statement</span> 并行执行语句</span><br><span class="line">Run the <span class="keyword">Statement</span> 运行语句</span><br><span class="line"><span class="keyword">Fetch</span> <span class="keyword">Rows</span> <span class="keyword">of</span> a <span class="keyword">Query</span> 取查询出来的行</span><br><span class="line"><span class="keyword">Close</span> the <span class="keyword">Cursor</span> 关闭游标</span><br></pre></td></tr></table></figure>
+<h2 id="重编译问题"><a href="#重编译问题" class="headerlink" title="重编译问题"></a>重编译问题</h2><p>语句：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> dConMsg <span class="keyword">where</span> contract_no = <span class="number">32013484095139</span></span><br></pre></td></tr></table></figure>
+<p>这个语句每执行一次就需要在SHARE POOL 硬解析一次，一百万用户就是一百万次，消耗CPU和内存，如果业务量大，很可能导致宕库……<br>如果绑定变量，则只需要硬解析一次，重复调用即可</p>
+<h3 id="绑定变量解决重新编译问题"><a href="#绑定变量解决重新编译问题" class="headerlink" title="绑定变量解决重新编译问题"></a>绑定变量解决重新编译问题</h3><p>未使用绑定变量的语句</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sprintf(sqlstr, "<span class="keyword">insert</span> <span class="keyword">into</span> scott.test1 (num1, num2) <span class="keyword">values</span> </span><br><span class="line"> (%d,%d)<span class="string">",n_var1, n_var2);</span></span><br><span class="line"><span class="string">EXEC SQL EXECUTE IMMEDIATE :sqlstr ;</span></span><br><span class="line"><span class="string">EXEC SQL COMMIT;</span></span><br></pre></td></tr></table></figure>
+<p>使用绑定变量的语句</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">strcpy(sqlstr, "<span class="keyword">insert</span> <span class="keyword">into</span> <span class="keyword">test</span> (num1, num2) <span class="keyword">values</span> (:v1, :v2)<span class="string">");</span></span><br><span class="line"><span class="string">EXEC SQL PREPARE sql_stmt FROM :sqlstr;</span></span><br><span class="line"><span class="string">EXEC SQL EXECUTE sql_stmt USING :n_var1, :n_var2;</span></span><br><span class="line"><span class="string">EXEC SQL COMMIT;</span></span><br></pre></td></tr></table></figure>
+<h2 id="sql语句的处理过程"><a href="#sql语句的处理过程" class="headerlink" title="sql语句的处理过程"></a>sql语句的处理过程</h2><h3 id="解析-PARSE"><a href="#解析-PARSE" class="headerlink" title="解析(PARSE)"></a>解析(PARSE)</h3><pre><code>在共享池中查找SQL语句
+检查语法
+检查语义和相关的权限
+合并(MERGE)视图定义和子查询
+确定执行计划
+</code></pre><h3 id="绑定-BIND"><a href="#绑定-BIND" class="headerlink" title="绑定(BIND)"></a>绑定(BIND)</h3><pre><code>在语句中查找绑定变量
+赋值(或重新赋值)
+</code></pre><h3 id="执行-EXECUTE"><a href="#执行-EXECUTE" class="headerlink" title="执行(EXECUTE)"></a>执行(EXECUTE)</h3><pre><code>应用执行计划
+执行必要的I/O和排序操作
+</code></pre><h3 id="提取-FETCH"><a href="#提取-FETCH" class="headerlink" title="提取(FETCH)"></a>提取(FETCH)</h3><pre><code>从查询结果中返回记录
+必要时进行排序
+</code></pre><h2 id="sql优化的一般性原则"><a href="#sql优化的一般性原则" class="headerlink" title="sql优化的一般性原则"></a>sql优化的一般性原则</h2><p>目标：<br>    减少服务器资源消耗（主要是磁盘IO）.<br>设计方面：<br>    尽量依赖oracle的优化器，并为其提供条件；<br>    合适的索引.<br>编码方面：<br>    利用索引，避免大表FULL TABLE SCAN；<br>    避免写过于复杂的sql，不一定非要一个sql解决问题；<br>    在不影响业务的前提下减小事务的粒度.</p>
+<h3 id="优化概括"><a href="#优化概括" class="headerlink" title="优化概括"></a>优化概括</h3><p>创建表的时候。应尽量建立主键，大数据表删除，用truncate table代替delete。<br>合理使用索引，在OLTP（数仓）应用中一张表的索引不要太多。组合索引的列顺序尽量与查询条件列顺序保持一致。<br>查询尽量用确定的列名，少用<em>号。select count(key)from tab where key&gt; 0性能优于select count(</em>)from tab；<br>尽量少嵌套子查询，这种查询会消耗大量的CPU资源；对于有比较多or运算的查询，建议分成多个查询，用union all联结起来；多表查询的查询语句中，选择最有效率的表名顺序。Oracle解析器对表解析从右到左，所以记录少的表放在右边。<br>尽量多用commit语句提交事务，可以及时释放资源、解锁、释放日志空间、减少管理花费。</p>
+<h3 id="用UNION-ALL-替换UNION"><a href="#用UNION-ALL-替换UNION" class="headerlink" title="用UNION-ALL 替换UNION"></a>用UNION-ALL 替换UNION</h3><p>当SQL语句需要UNION两个查询结果集合时,这两个结果集合会以UNION-ALL的方式被合并, 然后在输出最终结果前进行排序<br>低效：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> ACCT_NUM, BALANCE_AMT <span class="keyword">FROM</span> DEBIT_TRANSACTIONS</span><br><span class="line">          <span class="keyword">WHERE</span> TRAN_DATE = ’<span class="number">31</span>-<span class="built_in">DEC</span><span class="number">-95</span>’</span><br><span class="line">    <span class="keyword">UNION</span></span><br><span class="line"><span class="keyword">SELECT</span> ACCT_NUM, BALANCE_AMT <span class="keyword">FROM</span> DEBIT_TRANSACTIONS</span><br><span class="line">          <span class="keyword">WHERE</span> TRAN_DATE = ’<span class="number">31</span>-<span class="built_in">DEC</span><span class="number">-95</span>’</span><br></pre></td></tr></table></figure>
+<p>高效:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> ACCT_NUM, BALANCE_AMT <span class="keyword">FROM</span> DEBIT_TRANSACTIONS</span><br><span class="line">          <span class="keyword">WHERE</span> TRAN_DATE = ’<span class="number">31</span>-<span class="built_in">DEC</span><span class="number">-95</span>’</span><br><span class="line">    <span class="keyword">UNION</span> ALL</span><br><span class="line"><span class="keyword">SELECT</span> ACCT_NUM, BALANCE_AMT <span class="keyword">FROM</span> DEBIT_TRANSACTIONS</span><br><span class="line">          <span class="keyword">WHERE</span> TRAN_DATE = ’<span class="number">31</span>-<span class="built_in">DEC</span><span class="number">-95</span>’</span><br></pre></td></tr></table></figure>
+<h3 id="避免在索引列上使用函数"><a href="#避免在索引列上使用函数" class="headerlink" title="避免在索引列上使用函数"></a>避免在索引列上使用函数</h3><p>WHERE子句中，如果索引列是函数的一部分．优化器将不使用索引而使用全表扫描<br>低效：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> … <span class="keyword">FROM</span> DEPT <span class="keyword">WHERE</span> SAL * <span class="number">12</span> &gt; <span class="number">25000</span>;</span><br></pre></td></tr></table></figure>
+<p>高效:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> … <span class="keyword">FROM</span> DEPT <span class="keyword">WHERE</span> SAL  &gt; <span class="number">25000</span>/<span class="number">12</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="避免使用前置通配符"><a href="#避免使用前置通配符" class="headerlink" title="避免使用前置通配符"></a>避免使用前置通配符</h3><p>WHERE子句中, 如果索引列所对应的值的第一个字符由通配符(WILDCARD)开始, 索引将不被采用</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> USER_NO,USER_NAME,ADDRESS <span class="keyword">FROM</span> USER_FILES <span class="keyword">WHERE</span> USER_NO <span class="keyword">LIKE</span> <span class="string">'%109204421'</span>;</span><br></pre></td></tr></table></figure>
+<p>在这种情况下，ORACLE将使用全表扫描</p>
+<h3 id="避免在索引列上使用NOT"><a href="#避免在索引列上使用NOT" class="headerlink" title="避免在索引列上使用NOT"></a>避免在索引列上使用NOT</h3><p>通常，我们要避免在索引列上使用NOT, NOT会产生在和在索引列上使用函数相同的影响. 当ORACLE遇到NOT,他就会停止使用索引转而执行全表扫描.<br>低效:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> … <span class="keyword">FROM</span> DEPT <span class="keyword">WHERE</span> DEPT_CODE ! = <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+<p>高效: </p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> … <span class="keyword">FROM</span> DEPT <span class="keyword">WHERE</span> DEPT_CODE &gt; <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="用NOT-EXISTS-替代-NOT-IN"><a href="#用NOT-EXISTS-替代-NOT-IN" class="headerlink" title="用NOT EXISTS 替代 NOT IN"></a>用NOT EXISTS 替代 NOT IN</h3><p>在子查询中,NOT IN子句将执行一个内部的排序和合并. 无论在哪种情况下,NOT IN都是最低效的 (因为它对子查询中的表执行了一个全表遍历).<br>使用NOT EXISTS 子句可以有效地利用索引。尽可能使用NOT EXISTS来代替NOT IN，尽管二者都使用了NOT（不能使用索引而降低速度），NOT EXISTS要比NOT IN查询效率更高。<br>语句1：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> dname, deptno <span class="keyword">FROM</span> dept <span class="keyword">WHERE</span> deptno <span class="keyword">NOT</span> <span class="keyword">IN</span> (<span class="keyword">SELECT</span> deptno <span class="keyword">FROM</span> emp);</span><br></pre></td></tr></table></figure>
+<p>语句2：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> dname, deptno <span class="keyword">FROM</span> dept <span class="keyword">WHERE</span> <span class="keyword">NOT</span> <span class="keyword">EXISTS</span> </span><br><span class="line">(<span class="keyword">SELECT</span> deptno <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> dept.deptno = emp.deptno);</span><br></pre></td></tr></table></figure>
+<p>语句2比语句1的执行性能好很多</p>
+
+      
+    </div>
+    
+    
+    
+
+	<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+  
+</div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/数据库-SQL/" rel="tag"><i class="fa fa-tag"></i> 数据库,SQL</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/31/Makefile学习/" rel="next" title="Makefile学习">
+                <i class="fa fa-chevron-left"></i> Makefile学习
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zODUzNC8xNTA2Mg=="></div>
+    </div>
+
+  
+  
+
+
+
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/IMG_0885.JPG"
+                alt="Tovi" />
+            
+              <p class="site-author-name" itemprop="name">Tovi</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/HETovi" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.jianshu.com/u/8a4f92ef630c" target="_blank" title="简书">
+                      
+                        <i class="fa fa-fw fa-book"></i>简书</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#事务"><span class="nav-number">1.</span> <span class="nav-text">事务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#语句"><span class="nav-number">2.</span> <span class="nav-text">语句</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#建表语句"><span class="nav-number">2.1.</span> <span class="nav-text">建表语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#视图语句"><span class="nav-number">2.2.</span> <span class="nav-text">视图语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#索引"><span class="nav-number">2.3.</span> <span class="nav-text">索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#序列"><span class="nav-number">2.4.</span> <span class="nav-text">序列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基本表操作"><span class="nav-number">2.5.</span> <span class="nav-text">基本表操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数"><span class="nav-number">2.6.</span> <span class="nav-text">函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sql后台执行命令"><span class="nav-number">3.</span> <span class="nav-text">sql后台执行命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#连接数据库"><span class="nav-number">3.1.</span> <span class="nav-text">连接数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库启停"><span class="nav-number">3.2.</span> <span class="nav-text">数据库启停</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sql共享原理"><span class="nav-number">4.</span> <span class="nav-text">sql共享原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重编译问题"><span class="nav-number">5.</span> <span class="nav-text">重编译问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#绑定变量解决重新编译问题"><span class="nav-number">5.1.</span> <span class="nav-text">绑定变量解决重新编译问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sql语句的处理过程"><span class="nav-number">6.</span> <span class="nav-text">sql语句的处理过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解析-PARSE"><span class="nav-number">6.1.</span> <span class="nav-text">解析(PARSE)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#绑定-BIND"><span class="nav-number">6.2.</span> <span class="nav-text">绑定(BIND)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#执行-EXECUTE"><span class="nav-number">6.3.</span> <span class="nav-text">执行(EXECUTE)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#提取-FETCH"><span class="nav-number">6.4.</span> <span class="nav-text">提取(FETCH)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sql优化的一般性原则"><span class="nav-number">7.</span> <span class="nav-text">sql优化的一般性原则</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#优化概括"><span class="nav-number">7.1.</span> <span class="nav-text">优化概括</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用UNION-ALL-替换UNION"><span class="nav-number">7.2.</span> <span class="nav-text">用UNION-ALL 替换UNION</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#避免在索引列上使用函数"><span class="nav-number">7.3.</span> <span class="nav-text">避免在索引列上使用函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#避免使用前置通配符"><span class="nav-number">7.4.</span> <span class="nav-text">避免使用前置通配符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#避免在索引列上使用NOT"><span class="nav-number">7.5.</span> <span class="nav-text">避免在索引列上使用NOT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用NOT-EXISTS-替代-NOT-IN"><span class="nav-number">7.6.</span> <span class="nav-text">用NOT EXISTS 替代 NOT IN</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tovi</span>
+
+  
+</div>
+
+
+<!-- 
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+-->
+
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共8.3k字</span>
+</div>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+<!-- 
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+ -->
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
