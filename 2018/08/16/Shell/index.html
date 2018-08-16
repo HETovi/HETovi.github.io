@@ -94,7 +94,7 @@
 <meta property="og:image" content="http://yoursite.com/2018/08/16/Shell/整数测试符.png">
 <meta property="og:image" content="http://yoursite.com/2018/08/16/Shell/逻辑测试符.png">
 <meta property="og:image" content="http://yoursite.com/2018/08/16/Shell/逻辑运算符.png">
-<meta property="og:updated_time" content="2018-08-16T03:26:29.134Z">
+<meta property="og:updated_time" content="2018-08-16T08:45:41.911Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Shell">
 <meta name="twitter:description" content="Shell编程概述Shell简介Shell是什么在计算机语言中，shell是指一种命令行解释器，是为用户和操作系统之间通信提供的一种接口，它接受来自用户输入的命令，并将其转化为一系列的系统调用送到内核执行，并将结果输出给用户。shell分成两大类：一类是图形界面shell（Graphical User Interface），另一种是命令行式shell（Command Line Interface）">
@@ -406,7 +406,7 @@
         <h1 id="Shell编程概述"><a href="#Shell编程概述" class="headerlink" title="Shell编程概述"></a>Shell编程概述</h1><h2 id="Shell简介"><a href="#Shell简介" class="headerlink" title="Shell简介"></a>Shell简介</h2><h3 id="Shell是什么"><a href="#Shell是什么" class="headerlink" title="Shell是什么"></a>Shell是什么</h3><p>在计算机语言中，shell是指一种命令行解释器，是为用户和操作系统之间通信提供的一种接口，它接受来自用户输入的命令，并将其转化为一系列的系统调用送到内核执行，并将结果输出给用户。<br>shell分成两大类：一类是图形界面shell（Graphical User Interface），另一种是命令行式shell（Command Line Interface）。<br>shell还是一种解释型语言，这种语言经过编写后不需要做任何编译就可以运行。</p>
 <a id="more"></a>
 <h3 id="shell的功能"><a href="#shell的功能" class="headerlink" title="shell的功能"></a>shell的功能</h3><p>当一台系统运行起来时，内核会被调入内存中运行，由内核执行所有底层的工作，它会将所有应用程序及用户的操作翻译成CPU的基本指令，并将其送至处理器。<br>shell是为了对用户屏蔽这些复杂的技术细节，同时也是为了保护内核不会因用户直接操作而受到损害。</p>
-<h2 id="第一个shell脚本"><a href="#第一个shell脚本" class="headerlink" title="第一个shell脚本"></a>第一个shell脚本</h2><h3 id="helloworld-sh"><a href="#helloworld-sh" class="headerlink" title="helloworld.sh"></a>helloworld.sh</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>!/bin/bash</span><br><span class="line"><span class="meta">#</span>一个shell脚本永远以"#!"开头，这是一个脚本开始的标记，告诉操作系统执行这个文件需要使用某个解释器</span><br><span class="line"><span class="meta">#</span>/bin/bash指明了解释器的具体位置</span><br><span class="line"><span class="meta">#</span>脚本中所有以#开头的都是注解（当然以"#!"开头的除外）</span><br><span class="line">echo "hello world"</span><br></pre></td></tr></table></figure>
+<h2 id="第一个shell脚本"><a href="#第一个shell脚本" class="headerlink" title="第一个shell脚本"></a>第一个shell脚本</h2><h3 id="helloworld-sh"><a href="#helloworld-sh" class="headerlink" title="helloworld.sh"></a>helloworld.sh</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line"><span class="meta">#</span><span class="bash">一个shell脚本永远以<span class="string">"#!"</span>开头，这是一个脚本开始的标记，告诉操作系统执行这个文件需要使用某个解释器</span></span><br><span class="line"><span class="meta">#</span><span class="bash">/bin/bash指明了解释器的具体位置</span></span><br><span class="line"><span class="meta">#</span><span class="bash">脚本中所有以<span class="comment">#开头的都是注解（当然以"#!"开头的除外）</span></span></span><br><span class="line">echo "hello world"</span><br></pre></td></tr></table></figure>
 <h3 id="运行脚本"><a href="#运行脚本" class="headerlink" title="运行脚本"></a>运行脚本</h3><h4 id="在该脚本所在的目录中直接bash这个脚本"><a href="#在该脚本所在的目录中直接bash这个脚本" class="headerlink" title="在该脚本所在的目录中直接bash这个脚本"></a>在该脚本所在的目录中直接bash这个脚本</h4><p>//bash 一个文件指定了使用Bash shell 来解释脚本内容，所以这里不需要#!/bin/bash 了</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash helloworld.sh</span><br></pre></td></tr></table></figure>
 <h4 id="给该脚本加上可执行权限"><a href="#给该脚本加上可执行权限" class="headerlink" title="给该脚本加上可执行权限"></a>给该脚本加上可执行权限</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chmod +x helloworld.sh</span><br><span class="line">./helloworld.sh</span><br></pre></td></tr></table></figure>
@@ -700,7 +700,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
@@ -804,7 +804,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共14.4k字</span>
+  <span class="post-count">博客全站共32.7k字</span>
 </div>
 
         
