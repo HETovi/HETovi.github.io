@@ -295,6 +295,175 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/20/redis/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tovi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/IMG_0885.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Tovi的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/20/redis/" itemprop="url">redis</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-20T11:47:23+08:00">
+                2018-08-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,178
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  4
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Redis的数据结构"><a href="#Redis的数据结构" class="headerlink" title="Redis的数据结构"></a>Redis的数据结构</h1><p>Redis是一种高级的key-value的存储系统，其中value支持五种数据类型。<br>字符串<br>哈希<br>字符串列表<br>字符串集合<br>有序字符串集合</p>
+<h2 id="有关于key的定义，需要注意一下几点"><a href="#有关于key的定义，需要注意一下几点" class="headerlink" title="有关于key的定义，需要注意一下几点"></a>有关于key的定义，需要注意一下几点</h2><p>key不要太长，最好不要操作1024个字节，这不仅会消耗内存还会降低查找效率<br>key不要太短，如果太短会降低key的可读性<br>在项目中，key最好有一个统一的命名规范</p>
+<h1 id="存储类型"><a href="#存储类型" class="headerlink" title="存储类型"></a>存储类型</h1><h2 id="存储string"><a href="#存储string" class="headerlink" title="存储string"></a>存储string</h2><p>它在Redis中是二进制安全的，这便意味着该类型存入和获取的数据相同。<br>字符串类型的value最多可以容纳的数据长度是512M</p>
+<h2 id="存储hash"><a href="#存储hash" class="headerlink" title="存储hash"></a>存储hash</h2><p>Redis中的hash类型可以看成具有String key 和 String value 的map容器。<br>如果hash中包含很少的字段，那么该类型的数据也将仅占用很少的磁盘空间。<br>每一个hash可以存储4294967295个键值对。</p>
+<h2 id="存储List"><a href="#存储List" class="headerlink" title="存储List"></a>存储List</h2><p>这里先讲解一下什么是链表。<br>链表是一种线性的存储结构，意思是将要存储的数据存在一个存储单元中，这个存储单元里面除了存放有待存储的数据以外，还存储有其下一个存储单元的地址，每次查找数据的时候，通过某个存储单元的下一个存储单元的地址寻找后面的那个存储单元。</p>
+<p>list类型是按照插入顺序排序的字符串链表。<br>和数据结构中的普通链表一样，我们可以在其头部和尾部添加新的元素。<br>在插入时，如果该键不存在，Redis将为该键创建一个新的链表。<br>与此相反，如果链表中所有的元素均被移除，那么该键也将从数据库中删除。<br>List中可以包含的最大元素数量是4294967295</p>
+<h2 id="存储sets类型"><a href="#存储sets类型" class="headerlink" title="存储sets类型"></a>存储sets类型</h2><p>可以将set类型看作为没有排序的字符集合。<br>set可包含的最大元素数是4294967295<br>set中不允许出现重复的元素。</p>
+<h2 id="存储sortedset"><a href="#存储sortedset" class="headerlink" title="存储sortedset"></a>存储sortedset</h2><p>和sets类型极为相似，都是字符串的集合，都不允许重复的成员出现在一个set中。<br>之间的主要差别是sorted-sets中的每一个成员都会有一个分数与之关联，Redis正是通过分数来为集合中的成员进行从小到大的排序。<br>尽管sorted-sets中的成员是唯一的，但是分数可以是重复的。<br>在sorted-sets中添加、删除或更新一个成员的时间复杂度为集合中成员数量的对数。<br>由于sorted-sets中的成员在集合上的位置是有序的，因此，即便是访问位于集合中部的成员也仍然是非常高效的。<br>常用于：游戏排名、微博热点话题等使用场景。</p>
+<h1 id="Redis的特性"><a href="#Redis的特性" class="headerlink" title="Redis的特性"></a>Redis的特性</h1><p>一个Redis实例可以包括多个数据库，客户端可以指定连接某个Redis实例的哪个数据库。</p>
+<h1 id="Redis事务"><a href="#Redis事务" class="headerlink" title="Redis事务"></a>Redis事务</h1><p>在Redis中，MULTI/EXEC/DISCARD/这三个命令是我们实现事务的基石。</p>
+<h2 id="Redis事务特征"><a href="#Redis事务特征" class="headerlink" title="Redis事务特征"></a>Redis事务特征</h2><p>在事务中的所有命令都会被串行化的顺序执行，事务执行期间，Redis不会再为其他客户端的请求提供任何服务，从而保证了事物中的所有命令被原子的执行。<br>在Redis事务中如果有某一条命令执行失败，其后的命令仍然会被继续执行。<br>通过MULTI命令开启一个事务，在该语句后执行的命令都将被视为事务之内的操作，最后我们可以通过该执行EXEC/DISCARD命令来提交/回滚该事务内的所有操作。</p>
+<p>MULTI：开启事务用于标记事务的开始，其后执行的命令都将被存入命令队列，直到执行EXEC时，这些命令才会被原子的执行。</p>
+<h1 id="Redis持久化"><a href="#Redis持久化" class="headerlink" title="Redis持久化"></a>Redis持久化</h1><p>Redis的高性能是由于其将所有的数据都存储在内存中，为了使Redis在重启之后仍能保证数据不丢失，需要将数据从内存中同步到硬盘中，这一过程就是持久化。</p>
+<h2 id="RDB持久化（默认支持，无需配置）"><a href="#RDB持久化（默认支持，无需配置）" class="headerlink" title="RDB持久化（默认支持，无需配置）"></a>RDB持久化（默认支持，无需配置）</h2><p>在指定的时间间隔内将内存中的数据集快照写入磁盘</p>
+<h2 id="AOF持久化"><a href="#AOF持久化" class="headerlink" title="AOF持久化"></a>AOF持久化</h2><p>以日志的形式记录服务器所处理的每一个写操作，在Redis服务器启动之初会读取该文件来重新构建数据库，以保证启动后数据库中的数据是完整的。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+	<div>
+  
+</div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/16/Shell/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1297,7 +1466,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1310,7 +1479,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
@@ -1398,7 +1567,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共34.1k字</span>
+  <span class="post-count">博客全站共35.3k字</span>
 </div>
 
         

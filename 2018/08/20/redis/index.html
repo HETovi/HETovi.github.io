@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="C语言学习," />
+  <meta name="keywords" content="redis," />
 
 
 
@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="1.const 关键字声明后数据不能修改2.sizeof 数组名指的是整个数组的大小（以字节为单位）  sizeof 数组名[0]指的是数组中一个元素的大小  整个数组的大小除以单个元素的大小就是数组元素的个数3.初始化器的重要性  1）如果初始化器后面有更多的值。那么后面的值将被用于初始化指定元素后面的元素  2）如果再次初始化指定的元素，那么最后的初始化将会取代之前的初始化4.C不允许把数组作">
-<meta name="keywords" content="C语言学习">
+<meta name="description" content="Redis的数据结构Redis是一种高级的key-value的存储系统，其中value支持五种数据类型。字符串哈希字符串列表字符串集合有序字符串集合 有关于key的定义，需要注意一下几点key不要太长，最好不要操作1024个字节，这不仅会消耗内存还会降低查找效率key不要太短，如果太短会降低key的可读性在项目中，key最好有一个统一的命名规范 存储类型存储string它在Redis中是二进制安全">
+<meta name="keywords" content="redis">
 <meta property="og:type" content="article">
-<meta property="og:title" content="C语言数组和指针">
-<meta property="og:url" content="http://yoursite.com/2018/07/31/C语言数组和指针/index.html">
+<meta property="og:title" content="redis">
+<meta property="og:url" content="http://yoursite.com/2018/08/20/redis/index.html">
 <meta property="og:site_name" content="Tovi的博客">
-<meta property="og:description" content="1.const 关键字声明后数据不能修改2.sizeof 数组名指的是整个数组的大小（以字节为单位）  sizeof 数组名[0]指的是数组中一个元素的大小  整个数组的大小除以单个元素的大小就是数组元素的个数3.初始化器的重要性  1）如果初始化器后面有更多的值。那么后面的值将被用于初始化指定元素后面的元素  2）如果再次初始化指定的元素，那么最后的初始化将会取代之前的初始化4.C不允许把数组作">
+<meta property="og:description" content="Redis的数据结构Redis是一种高级的key-value的存储系统，其中value支持五种数据类型。字符串哈希字符串列表字符串集合有序字符串集合 有关于key的定义，需要注意一下几点key不要太长，最好不要操作1024个字节，这不仅会消耗内存还会降低查找效率key不要太短，如果太短会降低key的可读性在项目中，key最好有一个统一的命名规范 存储类型存储string它在Redis中是二进制安全">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-07-31T03:56:05.296Z">
+<meta property="og:updated_time" content="2018-08-20T03:55:38.998Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="C语言数组和指针">
-<meta name="twitter:description" content="1.const 关键字声明后数据不能修改2.sizeof 数组名指的是整个数组的大小（以字节为单位）  sizeof 数组名[0]指的是数组中一个元素的大小  整个数组的大小除以单个元素的大小就是数组元素的个数3.初始化器的重要性  1）如果初始化器后面有更多的值。那么后面的值将被用于初始化指定元素后面的元素  2）如果再次初始化指定的元素，那么最后的初始化将会取代之前的初始化4.C不允许把数组作">
+<meta name="twitter:title" content="redis">
+<meta name="twitter:description" content="Redis的数据结构Redis是一种高级的key-value的存储系统，其中value支持五种数据类型。字符串哈希字符串列表字符串集合有序字符串集合 有关于key的定义，需要注意一下几点key不要太长，最好不要操作1024个字节，这不仅会消耗内存还会降低查找效率key不要太短，如果太短会降低key的可读性在项目中，key最好有一个统一的命名规范 存储类型存储string它在Redis中是二进制安全">
 
 
 
@@ -122,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/07/31/C语言数组和指针/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/08/20/redis/"/>
 
 
 
 
 
-  <title>C语言数组和指针 | Tovi的博客</title>
+  <title>redis | Tovi的博客</title>
   
 
 
@@ -299,7 +299,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/31/C语言数组和指针/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/20/redis/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Tovi">
@@ -316,7 +316,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">C语言数组和指针</h1>
+          <h1 class="post-title" itemprop="name headline">redis</h1>
         
 
         <div class="post-meta">
@@ -328,8 +328,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-31T08:54:25+08:00">
-                2018-07-31
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-20T11:47:23+08:00">
+                2018-08-20
               </time>
             
 
@@ -360,7 +360,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,163
+                  1,178
                 </span>
               
 
@@ -376,7 +376,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  5
+                  4
                 </span>
               
             </div>
@@ -397,27 +397,21 @@
       
 
       
-        <p>1.const 关键字声明后数据不能修改<br>2.sizeof 数组名指的是整个数组的大小（以字节为单位）<br>  sizeof 数组名[0]指的是数组中一个元素的大小<br>  整个数组的大小除以单个元素的大小就是数组元素的个数<br>3.初始化器的重要性<br>  1）如果初始化器后面有更多的值。那么后面的值将被用于初始化指定元素后面的元素<br>  2）如果再次初始化指定的元素，那么最后的初始化将会取代之前的初始化<br>4.C不允许把数组作为一个单元赋给另一个数组，初初始化以外也不允许使用花括号列表的形式赋值<br>  <a id="more"></a></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> SIZE 5</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> oxen[SIZE] = &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;;  <span class="comment">/*初始化没问题,不足的参数设置为0*/</span></span><br><span class="line">  <span class="keyword">int</span> yaks[SIZE];</span><br><span class="line">  yaks = oxen; <span class="comment">/*不允许*/</span></span><br><span class="line">  yaks[SIZE] = oxen[SIZE];<span class="comment">/*数组下标越界*/</span></span><br><span class="line">  yaks[SIZE] = &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;;<span class="comment">/*不起作用*/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>5.数组边界<br>  在C标准中，使用越界下标的结果是未定义的<br>  使用越界的数组下标可能会导致程序改变其他变量的值。不同的编译器运行同一个程序的结果可能不同，有些会导致程序异常中止。<br>  要注意数组的边界</p>
-<p>6.指针和数组<br>  short类型占两个字节、double类型占八个字节<br>  在C中，指针加一指的是增加一个存储单元，对数组而言，这意味着加一后得到地址是下一个元素的地址，而不是下一个字节的地址，所以必须声明指针所指向对象的类型<br>  系统中地址是按字节编码的<br>7.<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">total += *start++;<span class="comment">//一元运算符*和++的优先级相同,但结合律是从右往左</span></span><br></pre></td></tr></table></figure></p>
-<p>  即表示为：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>)*start++=*(start++) =&gt;m=start;*m;start++(先把指针指向位置上值取出，然后再递增指针)</span><br><span class="line"><span class="number">2</span>)total = total+*m;</span><br></pre></td></tr></table></figure>
-<p>8.<code>int * p = &amp; a;</code><br>  p是指向a的指针，p中存的是a的地址<br>  &amp;p是指向指针p的指针，&amp;p中存的是指针p的地址<br>9.创建一个指针时，系统只分配了储存指针本身的内存，并未分配存储数据的内存，因此，在使用指针之前，必须先用已分配的地址初始化它。<br>10.const 指针是指不能用指针来改变它所指向的值，但是可以让指针指向别处<br>11.<br>1）把const数据或非const数据的地址初始化为指向const的指针或为其赋值是合法的</p>
-<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">double rate[<span class="number">5</span>] =&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;;</span><br><span class="line">const double locked[<span class="number">4</span>]=&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>&#125;;</span><br><span class="line">const double *pc = rate; <span class="comment">//有效</span></span><br><span class="line">pc = locked;<span class="comment">//有效</span></span><br><span class="line">pc = &amp;locked[<span class="number">3</span>] ;<span class="comment">//有效</span></span><br></pre></td></tr></table></figure>
-<p>2）只能把非const数据的地址赋给普通指针</p>
-<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">double rate[<span class="number">5</span>] =&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;;</span><br><span class="line">const double locked[<span class="number">4</span>]=&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>&#125;;</span><br><span class="line">double *pp = rate;<span class="comment">//有效</span></span><br><span class="line">pp = locked;<span class="comment">//无效&lt;因为如果成立的话就可以用指针改变locked的值了&gt;</span></span><br><span class="line">pp = &amp;rate[<span class="number">3</span>];<span class="comment">//有效</span></span><br></pre></td></tr></table></figure>
-<p>12.<code>double * const pc = &amp;rate;//可以初始化一个不能指向别处的指针</code><br>13.</p>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">int</span> (* p)<span class="selector-attr">[2]</span>;<span class="comment">//p指向一个内含两个int类型值的数组</span></span><br><span class="line"><span class="selector-tag">int</span> * <span class="selector-tag">p</span><span class="selector-attr">[2]</span>;<span class="comment">//p是一个内含两个指针元素的数组，每个元素都指向int 的指针</span></span><br></pre></td></tr></table></figure>
-<p>14.指针的兼容性<br>   指针之间的赋值比数值类型之间的赋值要严格<br>   假如有如下声明：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> * pt;</span><br><span class="line"><span class="keyword">int</span> (*pa)[<span class="number">3</span>];</span><br><span class="line"><span class="keyword">int</span> ar1[<span class="number">2</span>][<span class="number">3</span>];</span><br><span class="line"><span class="keyword">int</span> **p2;<span class="comment">//一个指向指针的指针</span></span><br></pre></td></tr></table></figure>
-<p>   有如下语句：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">pt = &amp;ar1[<span class="number">0</span>][<span class="number">0</span>];<span class="comment">//都是指向int的指针</span></span><br><span class="line">pt = ar1[<span class="number">0</span>];<span class="comment">//都是指向int的指针</span></span><br><span class="line">pt = ar1;<span class="comment">//无效</span></span><br><span class="line">pa = ar1;<span class="comment">//都是指向内含3个int类型元素的数组的指针</span></span><br><span class="line">pa = ar2;<span class="comment">//无效</span></span><br><span class="line">p2 = &amp;pt;<span class="comment">//both point-to-int *</span></span><br><span class="line">*p2 = ar2[<span class="number">0</span>];<span class="comment">//都是指向int的指针</span></span><br><span class="line">p2 = ar2;<span class="comment">//无效</span></span><br></pre></td></tr></table></figure>
-<p>15.把const指针赋给非const指针不安全，因为这样可以使用新的指针改变const指针指向的数据<br>   但是把非const指针赋给const指针没问题，前提是只进行一级解引用<br>16.编译器会把数组表示法转换成指针表示法</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ar[<span class="number">1</span>] -&gt; ar+<span class="number">1</span>;</span><br><span class="line"><span class="keyword">int</span> ar[][length] -&gt;表示ar指向一个内含length个<span class="keyword">int</span>类型值的数组</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sum2</span><span class="params">(<span class="keyword">int</span> ar[<span class="number">3</span>][<span class="number">4</span>],<span class="keyword">int</span> rows)</span></span>;<span class="comment">//有效声明，但是3会被忽略</span></span><br></pre></td></tr></table></figure>
-<ol start="17">
-<li>在把数组名作为实际参数时，传递给函数的不是整个数组，而是数组的地址（因此，函数对应的形式参数是指针）</li>
-</ol>
+        <h1 id="Redis的数据结构"><a href="#Redis的数据结构" class="headerlink" title="Redis的数据结构"></a>Redis的数据结构</h1><p>Redis是一种高级的key-value的存储系统，其中value支持五种数据类型。<br>字符串<br>哈希<br>字符串列表<br>字符串集合<br>有序字符串集合</p>
+<h2 id="有关于key的定义，需要注意一下几点"><a href="#有关于key的定义，需要注意一下几点" class="headerlink" title="有关于key的定义，需要注意一下几点"></a>有关于key的定义，需要注意一下几点</h2><p>key不要太长，最好不要操作1024个字节，这不仅会消耗内存还会降低查找效率<br>key不要太短，如果太短会降低key的可读性<br>在项目中，key最好有一个统一的命名规范</p>
+<h1 id="存储类型"><a href="#存储类型" class="headerlink" title="存储类型"></a>存储类型</h1><h2 id="存储string"><a href="#存储string" class="headerlink" title="存储string"></a>存储string</h2><p>它在Redis中是二进制安全的，这便意味着该类型存入和获取的数据相同。<br>字符串类型的value最多可以容纳的数据长度是512M</p>
+<h2 id="存储hash"><a href="#存储hash" class="headerlink" title="存储hash"></a>存储hash</h2><p>Redis中的hash类型可以看成具有String key 和 String value 的map容器。<br>如果hash中包含很少的字段，那么该类型的数据也将仅占用很少的磁盘空间。<br>每一个hash可以存储4294967295个键值对。</p>
+<h2 id="存储List"><a href="#存储List" class="headerlink" title="存储List"></a>存储List</h2><p>这里先讲解一下什么是链表。<br>链表是一种线性的存储结构，意思是将要存储的数据存在一个存储单元中，这个存储单元里面除了存放有待存储的数据以外，还存储有其下一个存储单元的地址，每次查找数据的时候，通过某个存储单元的下一个存储单元的地址寻找后面的那个存储单元。</p>
+<p>list类型是按照插入顺序排序的字符串链表。<br>和数据结构中的普通链表一样，我们可以在其头部和尾部添加新的元素。<br>在插入时，如果该键不存在，Redis将为该键创建一个新的链表。<br>与此相反，如果链表中所有的元素均被移除，那么该键也将从数据库中删除。<br>List中可以包含的最大元素数量是4294967295</p>
+<h2 id="存储sets类型"><a href="#存储sets类型" class="headerlink" title="存储sets类型"></a>存储sets类型</h2><p>可以将set类型看作为没有排序的字符集合。<br>set可包含的最大元素数是4294967295<br>set中不允许出现重复的元素。</p>
+<h2 id="存储sortedset"><a href="#存储sortedset" class="headerlink" title="存储sortedset"></a>存储sortedset</h2><p>和sets类型极为相似，都是字符串的集合，都不允许重复的成员出现在一个set中。<br>之间的主要差别是sorted-sets中的每一个成员都会有一个分数与之关联，Redis正是通过分数来为集合中的成员进行从小到大的排序。<br>尽管sorted-sets中的成员是唯一的，但是分数可以是重复的。<br>在sorted-sets中添加、删除或更新一个成员的时间复杂度为集合中成员数量的对数。<br>由于sorted-sets中的成员在集合上的位置是有序的，因此，即便是访问位于集合中部的成员也仍然是非常高效的。<br>常用于：游戏排名、微博热点话题等使用场景。</p>
+<h1 id="Redis的特性"><a href="#Redis的特性" class="headerlink" title="Redis的特性"></a>Redis的特性</h1><p>一个Redis实例可以包括多个数据库，客户端可以指定连接某个Redis实例的哪个数据库。</p>
+<h1 id="Redis事务"><a href="#Redis事务" class="headerlink" title="Redis事务"></a>Redis事务</h1><p>在Redis中，MULTI/EXEC/DISCARD/这三个命令是我们实现事务的基石。</p>
+<h2 id="Redis事务特征"><a href="#Redis事务特征" class="headerlink" title="Redis事务特征"></a>Redis事务特征</h2><p>在事务中的所有命令都会被串行化的顺序执行，事务执行期间，Redis不会再为其他客户端的请求提供任何服务，从而保证了事物中的所有命令被原子的执行。<br>在Redis事务中如果有某一条命令执行失败，其后的命令仍然会被继续执行。<br>通过MULTI命令开启一个事务，在该语句后执行的命令都将被视为事务之内的操作，最后我们可以通过该执行EXEC/DISCARD命令来提交/回滚该事务内的所有操作。</p>
+<p>MULTI：开启事务用于标记事务的开始，其后执行的命令都将被存入命令队列，直到执行EXEC时，这些命令才会被原子的执行。</p>
+<h1 id="Redis持久化"><a href="#Redis持久化" class="headerlink" title="Redis持久化"></a>Redis持久化</h1><p>Redis的高性能是由于其将所有的数据都存储在内存中，为了使Redis在重启之后仍能保证数据不丢失，需要将数据从内存中同步到硬盘中，这一过程就是持久化。</p>
+<h2 id="RDB持久化（默认支持，无需配置）"><a href="#RDB持久化（默认支持，无需配置）" class="headerlink" title="RDB持久化（默认支持，无需配置）"></a>RDB持久化（默认支持，无需配置）</h2><p>在指定的时间间隔内将内存中的数据集快照写入磁盘</p>
+<h2 id="AOF持久化"><a href="#AOF持久化" class="headerlink" title="AOF持久化"></a>AOF持久化</h2><p>以日志的形式记录服务器所处理的每一个写操作，在Redis服务器启动之初会读取该文件来重新构建数据库，以保证启动后数据库中的数据是完整的。</p>
 
       
     </div>
@@ -445,7 +439,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/C语言学习/" rel="tag"><i class="fa fa-tag"></i> C语言学习</a>
+            <a href="/tags/redis/" rel="tag"><i class="fa fa-tag"></i> redis</a>
           
         </div>
       
@@ -458,8 +452,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/07/30/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
+              <a href="/2018/08/16/Shell/" rel="next" title="Shell">
+                <i class="fa fa-chevron-left"></i> Shell
               </a>
             
           </div>
@@ -467,10 +461,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/07/31/Makefile学习/" rel="prev" title="Makefile学习">
-                Makefile学习 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -531,8 +521,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -610,6 +609,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Redis的数据结构"><span class="nav-number">1.</span> <span class="nav-text">Redis的数据结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#有关于key的定义，需要注意一下几点"><span class="nav-number">1.1.</span> <span class="nav-text">有关于key的定义，需要注意一下几点</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#存储类型"><span class="nav-number">2.</span> <span class="nav-text">存储类型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#存储string"><span class="nav-number">2.1.</span> <span class="nav-text">存储string</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#存储hash"><span class="nav-number">2.2.</span> <span class="nav-text">存储hash</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#存储List"><span class="nav-number">2.3.</span> <span class="nav-text">存储List</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#存储sets类型"><span class="nav-number">2.4.</span> <span class="nav-text">存储sets类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#存储sortedset"><span class="nav-number">2.5.</span> <span class="nav-text">存储sortedset</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Redis的特性"><span class="nav-number">3.</span> <span class="nav-text">Redis的特性</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Redis事务"><span class="nav-number">4.</span> <span class="nav-text">Redis事务</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis事务特征"><span class="nav-number">4.1.</span> <span class="nav-text">Redis事务特征</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Redis持久化"><span class="nav-number">5.</span> <span class="nav-text">Redis持久化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#RDB持久化（默认支持，无需配置）"><span class="nav-number">5.1.</span> <span class="nav-text">RDB持久化（默认支持，无需配置）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AOF持久化"><span class="nav-number">5.2.</span> <span class="nav-text">AOF持久化</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
