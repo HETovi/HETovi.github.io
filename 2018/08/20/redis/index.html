@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="Redis的数据结构Redis是一种高级的key-value的存储系统，其中value支持五种数据类型。字符串哈希字符串列表字符串集合有序字符串集合 有关于key的定义，需要注意一下几点key不要太长，最好不要操作1024个字节，这不仅会消耗内存还会降低查找效率key不要太短，如果太短会降低key的可读性在项目中，key最好有一个统一的命名规范 存储类型存储string它在Redis中是二进制安全">
+<meta name="description" content="Redis的数据结构Redis是一种高级的key-value的存储系统，其中value支持五种数据类型。字符串哈希字符串列表字符串集合有序字符串集合">
 <meta name="keywords" content="redis">
 <meta property="og:type" content="article">
-<meta property="og:title" content="redis">
+<meta property="og:title" content="Redis">
 <meta property="og:url" content="http://yoursite.com/2018/08/20/redis/index.html">
 <meta property="og:site_name" content="Tovi的博客">
-<meta property="og:description" content="Redis的数据结构Redis是一种高级的key-value的存储系统，其中value支持五种数据类型。字符串哈希字符串列表字符串集合有序字符串集合 有关于key的定义，需要注意一下几点key不要太长，最好不要操作1024个字节，这不仅会消耗内存还会降低查找效率key不要太短，如果太短会降低key的可读性在项目中，key最好有一个统一的命名规范 存储类型存储string它在Redis中是二进制安全">
+<meta property="og:description" content="Redis的数据结构Redis是一种高级的key-value的存储系统，其中value支持五种数据类型。字符串哈希字符串列表字符串集合有序字符串集合">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-20T03:55:38.998Z">
+<meta property="og:updated_time" content="2018-08-20T03:57:38.885Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="redis">
-<meta name="twitter:description" content="Redis的数据结构Redis是一种高级的key-value的存储系统，其中value支持五种数据类型。字符串哈希字符串列表字符串集合有序字符串集合 有关于key的定义，需要注意一下几点key不要太长，最好不要操作1024个字节，这不仅会消耗内存还会降低查找效率key不要太短，如果太短会降低key的可读性在项目中，key最好有一个统一的命名规范 存储类型存储string它在Redis中是二进制安全">
+<meta name="twitter:title" content="Redis">
+<meta name="twitter:description" content="Redis的数据结构Redis是一种高级的key-value的存储系统，其中value支持五种数据类型。字符串哈希字符串列表字符串集合有序字符串集合">
 
 
 
@@ -128,7 +128,7 @@
 
 
 
-  <title>redis | Tovi的博客</title>
+  <title>Redis | Tovi的博客</title>
   
 
 
@@ -316,7 +316,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">redis</h1>
+          <h1 class="post-title" itemprop="name headline">Redis</h1>
         
 
         <div class="post-meta">
@@ -398,6 +398,7 @@
 
       
         <h1 id="Redis的数据结构"><a href="#Redis的数据结构" class="headerlink" title="Redis的数据结构"></a>Redis的数据结构</h1><p>Redis是一种高级的key-value的存储系统，其中value支持五种数据类型。<br>字符串<br>哈希<br>字符串列表<br>字符串集合<br>有序字符串集合</p>
+<a id="more"></a>
 <h2 id="有关于key的定义，需要注意一下几点"><a href="#有关于key的定义，需要注意一下几点" class="headerlink" title="有关于key的定义，需要注意一下几点"></a>有关于key的定义，需要注意一下几点</h2><p>key不要太长，最好不要操作1024个字节，这不仅会消耗内存还会降低查找效率<br>key不要太短，如果太短会降低key的可读性<br>在项目中，key最好有一个统一的命名规范</p>
 <h1 id="存储类型"><a href="#存储类型" class="headerlink" title="存储类型"></a>存储类型</h1><h2 id="存储string"><a href="#存储string" class="headerlink" title="存储string"></a>存储string</h2><p>它在Redis中是二进制安全的，这便意味着该类型存入和获取的数据相同。<br>字符串类型的value最多可以容纳的数据长度是512M</p>
 <h2 id="存储hash"><a href="#存储hash" class="headerlink" title="存储hash"></a>存储hash</h2><p>Redis中的hash类型可以看成具有String key 和 String value 的map容器。<br>如果hash中包含很少的字段，那么该类型的数据也将仅占用很少的磁盘空间。<br>每一个hash可以存储4294967295个键值对。</p>
